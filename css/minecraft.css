@@ -43,3 +43,15 @@
 .box{
     display:inline-block;
 }
+
+.tool {
+    padding: 2%;
+    height: 80px;
+    width: 80px;
+    border: 3px solid deepskyblue;
+}
+
+#toolSet {
+    margin-top: -460px;
+    margin-left: 50%;
+}

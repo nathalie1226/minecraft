@@ -32,18 +32,33 @@ for (var i = 0; i < 20; i++) {
         box.className = "box";
         bigBox.appendChild(box);
     }
-    document.body.appendChild(bigBox);
+    var board = document.createElement('div');
+    board.appendChild(bigBox);
+    document.body.appendChild(board);
 }
 
 minecraft.init=function(){
+
+    var toolSet = document.createElement('div');
+    toolSet.id = "toolSet";
+    document.body.appendChild(toolSet);
     
-    // for(var r=0;r<minecraft.matrix.length;r++) {
-    //     for (var c = 0; c < minecraft.matrix[r].length; c++) {
-    //         if (minecraft.matrix[r][c] === "") {
-    //             minecraft.matrix[r][c] = "sky";
-    //         }
-    //     }
-    // }
+    var toolTree = document.createElement('div');
+    toolTree.id = "axe";
+    toolTree.className = "tool";
+    toolSet.appendChild(toolTree);
+    
+    var toolRock = document.createElement('div');
+    toolRock.id = "pick";
+    toolRock.className = "tool";
+    toolSet.appendChild(toolRock);
+    
+    var toolGround = document.createElement('div');
+    toolGround.id = "shovel";
+    toolGround.className = "tool";
+    toolSet.appendChild(toolGround);
+  
+
     for(var i=0;i<minecraft.matrix.length;i++){
         for(var j=0; j<minecraft.matrix[i].length;j++) {
             if (minecraft.matrix[i][j] === "") {
