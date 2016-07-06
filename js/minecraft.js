@@ -64,6 +64,9 @@ minecraft.init = function () {
     minecraft.tools = $('.tool');
     minecraft.tools.on('click', minecraft.clickedTool);
 
+    minecraft.tiles = $('.box');
+    minecraft.tiles.on('click', minecraft.clickedTile);
+
     for (var i = 0; i < minecraft.matrix.length; i++) {
         for (var j = 0; j < minecraft.matrix[i].length; j++) {
             if (minecraft.matrix[i][j] === "") {
@@ -80,5 +83,12 @@ minecraft.clickedTool = function (event) {
     minecraft.tool = event.target.id;
   console.log(minecraft.tool);
     
+};
+
+minecraft.clickedTile = function (event){
+
+    minecraft.tile = event.target.className;
+    console.log(minecraft.tile);
+
 };
 minecraft.init();
