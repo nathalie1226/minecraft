@@ -73,7 +73,6 @@ minecraft.init = function () {
                 minecraft.matrix[i][j] = "sky";
             }
             $('.box').eq(i * 20 + j).data("i", i).data("j", j).addClass(minecraft.matrix[i][j]);
-
         }
     }
 };
@@ -89,6 +88,27 @@ minecraft.clickedTile = function (event){
 
     minecraft.tile = event.target.className;
     console.log(minecraft.tile);
+};
+
+minecraft.checkIfClassMatch = function () {
+    //take the id of the "clicked tool"  (minecraft.tool)
+    if (minecraft.tool === "axe" && minecraft.tile === "box tree" || "box leaf") {
+        minecraft.storedTile = minecraft.clickedTile;
+    }
+
+    if else (minecraft.tool === "shovel" && minecraft.tile === "box grass" || "box dirt") {
+        minecraft.storedTile = minecraft.clickedTile;
+    }
+
+    if else (minecraft.tool === "pick" && minecraft.tile === "box rock") {
+        minecraft.storedTile = minecraft.clickedTile;
+    }
+
+    else {
+        minecraft.tool.addClass(".errorClick");
+    }
+    
 
 };
 minecraft.init();
+checkIfClassMatch();

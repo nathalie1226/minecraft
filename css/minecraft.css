@@ -69,5 +69,8 @@
 #shovel {
     background-image: url("../images/shovel.png");
     background-size: cover;
+}
 
+.errorClick {
+    background-color: red;
 }
