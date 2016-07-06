@@ -11,6 +11,11 @@
     background-color: white;
 }
 
+.leaf{
+    background-image: url("../images/leaf.jpg");
+    background-size: cover;
+}
+
 .grass{
     background-image: url("../images/grass.png");
     background-size: cover;
@@ -31,8 +36,10 @@
     background-size: cover;
 }
 
-.inLine{
-    display: inline-block;
-    margin-left: -4px;
+.row{
+    margin-top:-8px;
 }
 
+.box{
+    display:inline-block;
+}
