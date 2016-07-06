@@ -2,6 +2,7 @@
     height: 40px;
     width: 40px;
     display:inline-block;
+    background-color:lightskyblue;
 }
 
 .sky{
@@ -49,9 +50,12 @@
     border: 3px solid deepskyblue;
 }
 
+.errorClick{
+    border:3px solid red;
+}
 #toolSet {
     margin-top: -633px;
-    margin-left: 60%;
+    margin-left: 90%;
 }
 
 #axe {
@@ -69,8 +73,12 @@
 #shovel {
     background-image: url("../images/shovel.png");
     background-size: cover;
+
 }
 
-.errorClick {
-    background-color: red;
+#saved {
+    padding: 2%;
+    height: 80px;
+    width: 80px;
+    border: 3px solid deepskyblue;
 }
