@@ -1,6 +1,7 @@
 .box{
     height: 40px;
     width: 40px;
+    display:inline-block;
 }
 
 .sky{
@@ -40,9 +41,6 @@
     margin-top:-8px;
 }
 
-.box{
-    display:inline-block;
-}
 
 .tool {
     padding: 2%;
@@ -54,4 +52,22 @@
 #toolSet {
     margin-top: -460px;
     margin-left: 50%;
+}
+
+#axe {
+    background-image: url("../images/axe.png");
+    background-size: cover;
+
+}
+
+#pick {
+    background-image: url("../images/pickaxe.png");
+    background-size: cover;
+
+}
+
+#shovel {
+    background-image: url("../images/shovel.png");
+    background-size: cover;
+
 }
