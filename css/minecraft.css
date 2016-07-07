@@ -1,61 +1,62 @@
-.box{
+.box {
     height: 40px;
     width: 40px;
-    display:inline-block;
-    background-color:lightskyblue;
-}
-
-.sky{
+    display: inline-block;
     background-color: lightskyblue;
 }
 
-.cloud{
+.sky {
+    background-color: lightskyblue;
+}
+
+.cloud {
     background-color: white;
 }
 
-.leaf{
+.leaf, #treasure[data-saved-tile='leaf'] {
     background-image: url("../images/leaf.jpg");
     background-size: cover;
 }
 
-.grass{
+.grass, #treasure[data-saved-tile='grass'] {
     background-image: url("../images/grass.png");
     background-size: cover;
 }
 
-.dirt{
+.dirt, #treasure[data-saved-tile='dirt'] {
     background-image: url("../images/dirt.png");
     background-size: cover;
 }
 
-.rock{
+.rock, #treasure[data-saved-tile='rock'] {
     background-image: url("../images/rock.png");
     background-size: cover;
 }
 
-.tree{
+.tree, #treasure[data-saved-tile='tree'] {
     background-image: url("../images/tree.png");
     background-size: cover;
 }
 
-.row{
-    margin-top:-8px;
+.row {
+    margin-top: -8px;
 }
 
-
-.tool {
+.tool, .storedTile {
     padding: 2%;
     height: 80px;
     width: 80px;
     border: 3px solid deepskyblue;
 }
 
-.errorClick{
-    border:3px solid red;
+.errorClick {
+    border: 3px solid red;
 }
+
 #toolSet {
-    margin-top: -633px;
+    margin-top: 50px;
     margin-left: 90%;
+    position: absolute;
 }
 
 #axe {
@@ -65,7 +66,7 @@
 }
 
 #pick {
-    background-image: url("../images/pickaxe.png");
+    background-image: url('../images/pickaxe.png');
     background-size: cover;
 
 }
@@ -81,4 +82,62 @@
     height: 80px;
     width: 80px;
     border: 3px solid deepskyblue;
+}
+
+#submit {
+    padding: 2%;
+    height: 50px;
+    width: 88px;
+    border: 3px solid deepskyblue;
+    margin-top: 4px;
+    color: white;
+    background-color: deepskyblue;
+}
+
+#first{
+    position:absolute;
+    width:150px;
+    height:150px;
+    margin-left:50%;
+    margin-top:2%;
+
+}
+#lightbox{
+
+    display: block;
+    position: fixed;
+    width: 150%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 123;
+
+
+}
+#message{
+    display: inline-block;
+    position: absolute;
+    left: 34%;
+    top: 50%;
+    z-index: 4;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    padding: 20px;
+    font-size: 35px;
+    border-radius: 18px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: black;
+}
+
+.selected{
+    border: 3px solid black;
+}
+
+#second{
+    margin-left: 50%;
+    margin-top: 12%;
+    width: 150px;
+    height: 150px;
+    position: absolute;
 }
