@@ -231,7 +231,7 @@ minecraft.checkIfWon = function () {
         }
     }
     if (!foundProblem) {
-        $('#message').text('congratulations!!! you are the best!!!');
+        $('#message').text('congratulations '+$("#playerName").val()+'!!! you are the best!!!');
         $('#lightbox').show();
     } else {
         $('#message').text('sorry you lost');
