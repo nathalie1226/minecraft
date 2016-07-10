@@ -145,3 +145,96 @@
     height: 150px;
     position: absolute;
 }
+
+/*Shai CSS*/
+.pixel{
+    height: 40px;
+    width: 40px;
+}
+
+.window{
+    background-image: url("../images/window.png");
+    background-size: cover;
+}
+
+.gate{
+    background-image: url("../images/gate.jpg");
+    background-size: cover;
+}
+
+.fence{
+    background-image: url("../images/fence.png");
+    background-size: cover;
+}
+
+
+.inLine{
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 9;
+}
+
+.logo{
+    transform: translateX(283%);
+    background-image: url("../images/MinecraftLogo.png");
+    background-position: center;
+    background-size: contain;
+    z-index: 100000;
+    height: 600px;
+    width: 600px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -205px;
+    left: -1050px;
+}
+
+.itc{
+    background-image: url("../images/itc.png");
+    background-position: center;
+    background-size: contain;
+    z-index: 1000000;
+    height: 516px;
+    width: 122px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -205px;
+    left: 600px;
+    transform: rotate(-10deg)
+}
+
+.input-post {
+    transform: translateX(283%);
+    z-index: 99999;
+    height: 45px;
+    width: 200px;
+    position: absolute;
+    top: 384px;
+    left: 273px;
+}
+
+.input-place{
+    text-align: center;
+}
+
+.btn-post{
+    transform: translateX(283%);
+    z-index: 100000;
+    height: 45px;
+    width: 200px;
+    position: absolute;
+    top: 375px;
+    left: 270px;
+    border: 4px solid black;
+    background: gray;
+    color: #fff;
+    font-family: Sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    line-height: 0px;
+}
+
+button:hover {
+    background: darkgray;
+}

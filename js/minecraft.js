@@ -1,3 +1,27 @@
+//Landing page ~ Welcome Screen ~ Enter player name
+var LandingPage = {};
+
+LandingPage.init = function(){
+    $(document).ready(function(){
+        $(".btn-post").one("click",function(){
+            var btn = $(this);
+            btn.animate({top: "427px"});
+            btn.text("START");
+            btn.id="start";
+            $(this).click(function(){
+                $("#landingPage").fadeOut();
+                $('.game').show();
+            })
+        });
+    })
+}
+
+LandingPage.init();
+
+LandingPage.getName = function () {
+    return $("#playerName").val();
+};
+
 var minecraft = {}; //creates the minecraft object
 //creating the matrix
 minecraft.matrix = [
@@ -84,7 +108,7 @@ for (var i = 0; i < 20; i++) {
         var box = $("<div/>");
         box.addClass("box");
         bigBox.append(box);
-    }
+        $('.game').append(bigBox);    }
 
 }
 //creating a function that allows the player to choose which picture he wants to recreate
