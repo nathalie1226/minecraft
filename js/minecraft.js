@@ -24,7 +24,7 @@ minecraft.matrix = [
 
 ];
 
-//creating the answer matrix
+//creating the answer matrix in order to check if what the player submits corresponds to the answer
 minecraft.AnswerMatrix = [
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
@@ -49,6 +49,7 @@ minecraft.AnswerMatrix = [
 
 
 ];
+//creating another answer matrix
 minecraft.AnswerMatrix2 = [
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
@@ -86,48 +87,37 @@ for (var i = 0; i < 20; i++) {
     }
 
 }
+//creating a function that allows the player to choose which picture he wants to recreate
 minecraft.selectedImage = function () {
     if ($(".example.selected").length == 0 ) {
         var selected = $(this);
         selected.addClass('selected');
         if (selected.attr('id') === "first") {
-            minecraft.example = minecraft.AnswerMatrix
+            minecraft.example = minecraft.AnswerMatrix;
+            $('#first').height(350);
+            $('#first').width(350);
+            $('#second').css('display','none');
         }
         else if (selected.attr('id') === "second") {
-            minecraft.example = minecraft.AnswerMatrix2
+            minecraft.example = minecraft.AnswerMatrix2;
+            $('#second').height(350);
+            $('#second').width(350);
+            $('#first').css('display','none');
         }
     }
 };
-minecraft.shuffle = function () {
 
-    var currentIndex = array.length, temporaryValue, randomIndex;
 
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-
-};
 //function initialisation that will be called first
 minecraft.init = function () {
 
-    $('img').on("click", minecraft.selectedImage);
-    $('#treasure').attr("data-saved-tile", "");
-    minecraft.tool = "shovel";
-    minecraft.tile = "";
-    minecraft.storedTile = "";
-    minecraft.example=[];
-    $('#submit').on('click', minecraft.checkIfWon);
+    $('img').on("click", minecraft.selectedImage); //adding an event listener to the images
+    $('#treasure').attr("data-saved-tile", ""); // creating a data called 'saved-tile' that will save the value of the saved-tile
+    minecraft.tool = "shovel"; //variable that stocks the tool selected
+    minecraft.tile = ""; //variable that stocks the tile selected
+    minecraft.storedTile = ""; //variable that stocks the value of the stored tile
+    minecraft.example=[]; //matrix that contains the image chosen by the player (the one he wants to recreate)
+    $('#submit').on('click', minecraft.checkIfWon); //adding an event listener to the submit button that will check if the player won the game
 
     minecraft.tools = $('.tool');
     minecraft.tools.on('click', minecraft.clickedTool);
@@ -140,13 +130,14 @@ minecraft.init = function () {
             if (minecraft.matrix[i][j] === "") {
                 minecraft.matrix[i][j] = "sky";
                 minecraft.AnswerMatrix[i][j] = "sky";
-            }
+                minecraft.AnswerMatrix2[i][j]="sky";
+            } //inside every matrix when the element is empty it means that there needs tp be sky so i am adding the sky in all three matrices throught loops
             $('.box').eq(i * 20 + j).data("i", i).data("j", j).addClass(minecraft.matrix[i][j]);
-
+//adding to every box data that will contain the index of the matrix and adding the class to the boxes according to the matrix.
         }
     }
 };
-
+//function that savec the id of the clicked tool inside the variable minecraft.tool
 minecraft.clickedTool = function (event) {
     minecraft.tool = this.id;
 };
@@ -154,31 +145,13 @@ minecraft.clickedTool = function (event) {
 
 
 
-minecraft.checkIfWon = function () {
-    var foundProblem = false;
-    for (var i = 0; i < minecraft.matrix.length; i++) {
-        for (var j = 0; j < minecraft.matrix[i].length; j++) {
-            if (minecraft.matrix[i][j] !== minecraft.example[i][j]) {
-                foundProblem = true;
-                break;
-            }
-        }
-    }
-    if (!foundProblem) {
-        $('#message').text('congrats');
-        $('#lightbox').show();
-    } else {
-        $('#message').text('sorry you lost');
-        $('#lightbox').show();
-    }
-};
 //function that checks if the tool selected can be used on the tile selected 
 minecraft.checkIfBoxMatches = function () {
 
     var tileClicked = $(this);
     minecraft.tile = tileClicked.prop('class').replace("box ", "");
 
-
+//checking if the proper tool is selected for the proper tile
     if (minecraft.tool === "axe" && (tileClicked.hasClass("tree") || tileClicked.hasClass("leaf"))) {
         minecraft.moveTile (tileClicked);
     }
@@ -199,7 +172,7 @@ minecraft.checkIfBoxMatches = function () {
 
 
     }
-    // if the selected tool does not match the tile you can an'error
+    // if the selected tool does not match the tile you have an error
     else {
 
         var div = document.getElementById(minecraft.tool);
@@ -212,12 +185,32 @@ minecraft.checkIfBoxMatches = function () {
 };
 
 
-//inner function that if the tool selects the right tile takes the class of the tile selected and saves it inside the storedTile and then reloads the matrix
+//inner function that if the right tool selects the right tile, takes the class of the tile selected and saves it inside the storedTile and then reloads the matrix
 minecraft.moveTile =  function(tileClicked) {
     minecraft.storedTile = minecraft.tile;
     $('#treasure').attr("data-saved-tile", minecraft.tile);
     minecraft.matrix[tileClicked.data("i")][tileClicked.data("j")] = 'box sky';
     minecraft.renderBoard();
+};
+
+//checks if every element of the matrix is equal to the example matrix
+minecraft.checkIfWon = function () {
+    var foundProblem = false;
+    for (var i = 0; i < minecraft.matrix.length; i++) {
+        for (var j = 0; j < minecraft.matrix[i].length; j++) {
+            if (minecraft.matrix[i][j] !== minecraft.example[i][j]) {
+                foundProblem = true;
+                break;
+            }
+        }
+    }
+    if (!foundProblem) {
+        $('#message').text('congratulations!!! you are the best!!!');
+        $('#lightbox').show();
+    } else {
+        $('#message').text('sorry you lost');
+        $('#lightbox').show();
+    }
 };
 
 //updating the board according to the matrix
