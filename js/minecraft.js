@@ -139,6 +139,8 @@ minecraft.init = function () {
 };
 //function that savec the id of the clicked tool inside the variable minecraft.tool
 minecraft.clickedTool = function (event) {
+    minecraft.tools.removeClass("selected");
+    $(this).addClass("selected");
     minecraft.tool = this.id;
 };
 
@@ -179,7 +181,7 @@ minecraft.checkIfBoxMatches = function () {
         div.className += ' errorClick';
         setTimeout(function () {
             div.className = 'tool';
-        }, 2000);
+        }, 1000);
     }
 
 };
