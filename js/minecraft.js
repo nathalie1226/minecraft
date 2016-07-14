@@ -14,7 +14,7 @@ LandingPage.init = function(){
             })
         });
     })
-}
+};
 
 LandingPage.init();
 
@@ -37,9 +37,9 @@ minecraft.matrix = [
     ["", "", "", "", "", "", "", "cloud", "cloud", "", "", "", "", "", "", "leaf", "leaf", "leaf", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "leaf", "leaf", "leaf", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "leaf", "leaf", "leaf", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "tree", "", "", ""],
-    ["", "", "", "", "leaf", "", "", "", "", "", "", "", "", "", "", "", "tree", "", "", ""],
-    ["", "", "", "leaf", "leaf", "leaf", "", "", "", "", "", "", "", "rock", "rock", "", "tree", "", "", "rock"],
+    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "leaf", "tree", "leaf", "", ""],
+    ["", "", "", "", "leaf", "leaf", "", "", "", "", "", "", "", "", "", "", "tree", "", "", ""],
+    ["", "", "", "leaf", "leaf", "leaf", "", "", "", "", "", "", "rock", "rock", "rock", "", "tree", "", "", "rock"],
     ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
     ["dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
@@ -62,7 +62,7 @@ minecraft.AnswerMatrix = [
     ["", "", "", "", "", "", "", "cloud", "cloud", "", "", "", "", "", "", "leaf", "leaf", "leaf", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "leaf", "leaf", "leaf", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "leaf", "leaf", "leaf", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "tree", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "","", "tree","", "", ""],
     ["", "", "", "", "leaf", "", "", "", "", "", "", "", "", "", "", "", "tree", "", "", ""],
     ["", "", "", "leaf", "leaf", "leaf", "", "", "", "", "", "", "", "rock", "rock", "", "tree", "", "", "rock"],
     ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -101,14 +101,10 @@ minecraft.AnswerMatrix2 = [
 
 //creating the board
 for (var i = 0; i < 20; i++) {
-    var bigBox = $("<div/>");
-    bigBox.addClass("row");
-    $('body').append(bigBox);
+    var bigBox = $("<div/>").addClass("row").appendTo('body');
     for (var j = 0; j < 20; j++) {
-        var box = $("<div/>");
-        box.addClass("box");
-        bigBox.append(box);
-        $('.game').append(bigBox);    }
+        var box = $("<div/>").addClass("box").appendTo(bigBox);
+        $('.game').append(bigBox);  }
 
 }
 //creating a function that allows the player to choose which picture he wants to recreate
@@ -118,14 +114,12 @@ minecraft.selectedImage = function () {
         selected.addClass('selected');
         if (selected.attr('id') === "first") {
             minecraft.example = minecraft.AnswerMatrix;
-            $('#first').height(350);
-            $('#first').width(350);
+            $('#first').height(350).width(350);
             $('#second').css('display','none');
         }
         else if (selected.attr('id') === "second") {
             minecraft.example = minecraft.AnswerMatrix2;
-            $('#second').height(350);
-            $('#second').width(350);
+            $('#second').height(350).width(350);
             $('#first').css('display','none');
         }
     }
@@ -153,9 +147,15 @@ minecraft.init = function () {
         for (var j = 0; j < minecraft.matrix[i].length; j++) {
             if (minecraft.matrix[i][j] === "") {
                 minecraft.matrix[i][j] = "sky";
+            }
+            if (minecraft.AnswerMatrix[i][j] === "") {
                 minecraft.AnswerMatrix[i][j] = "sky";
-                minecraft.AnswerMatrix2[i][j]="sky";
-            } //inside every matrix when the element is empty it means that there needs tp be sky so i am adding the sky in all three matrices throught loops
+            }
+            if (minecraft.AnswerMatrix2[i][j] === "") {
+                minecraft.AnswerMatrix2[i][j] = "sky";
+            }
+
+             //inside every matrix when the element is empty it means that there needs tp be sky so i am adding the sky in all three matrices throught loops
             $('.box').eq(i * 20 + j).data("i", i).data("j", j).addClass(minecraft.matrix[i][j]);
 //adding to every box data that will contain the index of the matrix and adding the class to the boxes according to the matrix.
         }
@@ -201,7 +201,7 @@ minecraft.checkIfBoxMatches = function () {
     // if the selected tool does not match the tile you have an error
     else {
 
-        var div = document.getElementById(minecraft.tool);
+        var div = $('#minecraft.tool');
         div.className += ' errorClick';
         setTimeout(function () {
             div.className = 'tool';
@@ -215,14 +215,14 @@ minecraft.checkIfBoxMatches = function () {
 minecraft.moveTile =  function(tileClicked) {
     minecraft.storedTile = minecraft.tile;
     $('#treasure').attr("data-saved-tile", minecraft.tile);
-    minecraft.matrix[tileClicked.data("i")][tileClicked.data("j")] = 'box sky';
+    minecraft.matrix[tileClicked.data("i")][tileClicked.data("j")] = 'sky';
     minecraft.renderBoard();
 };
 
 //checks if every element of the matrix is equal to the example matrix
 minecraft.checkIfWon = function () {
     var foundProblem = false;
-    for (var i = 0; i < minecraft.matrix.length; i++) {
+    for (var i = 12; i < minecraft.matrix.length; i++) {
         for (var j = 0; j < minecraft.matrix[i].length; j++) {
             if (minecraft.matrix[i][j] !== minecraft.example[i][j]) {
                 foundProblem = true;
