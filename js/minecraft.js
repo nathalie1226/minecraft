@@ -156,7 +156,7 @@ minecraft.init = function () {
             }
 
              //inside every matrix when the element is empty it means that there needs tp be sky so i am adding the sky in all three matrices throught loops
-            $('.box').eq(i * 20 + j).data("i", i).data("j", j).addClass(minecraft.matrix[i][j]);
+            minecraft.tiles.eq(i * 20 + j).data("i", i).data("j", j).addClass(minecraft.matrix[i][j]);
 //adding to every box data that will contain the index of the matrix and adding the class to the boxes according to the matrix.
         }
     }
@@ -232,22 +232,17 @@ minecraft.checkIfWon = function () {
     }
     if (!foundProblem) {
         $('#message').text('congratulations '+$("#playerName").val()+'!!! you are the best!!!');
-        $('#lightbox').show();
     } else {
         $('#message').text('sorry you lost');
-        $('#lightbox').show();
     }
+    $('#lightbox').show();
 };
 
 //updating the board according to the matrix
 minecraft.renderBoard = function () {
     minecraft.tiles
 
-        .removeClass("tree")
-        .removeClass("leaf")
-        .removeClass("dirt")
-        .removeClass("grass")
-        .removeClass("rock");
+        .removeClass("tree").removeClass("leaf").removeClass("dirt").removeClass("grass").removeClass("rock");
 
     for (var i = 0; i < minecraft.matrix.length; i++) {
         for (var j = 0; j < minecraft.matrix[i].length; j++) {
